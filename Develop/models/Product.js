@@ -35,10 +35,10 @@ Product.init(
         isNumeric: true,
       },
     },
-    categroy_id: {
+    category_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: "categroy",
+        model: "category",
         key: "id",
       },
     },
