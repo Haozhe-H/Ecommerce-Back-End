@@ -28,6 +28,23 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
   // find a single tag by its `id`
   // be sure to include its associated Product data
+  Tag.findByPk(req.params.id, {
+    attributes: ["id", "category_name"],
+    include: [
+      {
+        model: Product,
+        attributes: ["id", "product_name", "price", "stock", "category_id"],
+        through: "ProductTag",
+      },
+    ],
+  })
+    .then((tag) => {
+      res.json(tag);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.json(err);
+    });
 });
 
 router.post("/", (req, res) => {
