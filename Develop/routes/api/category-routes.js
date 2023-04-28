@@ -11,6 +11,15 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   // find one category by its `id` value
   // be sure to include its associated Products
+  Category.findAll({
+    attributes: ['id', 'category_name'],
+    include: [{
+      model: Product,
+      attributes: ['id', 'product_name', 'price', 'stock', 'category_id']
+    }]
+  }).then((category) => {
+    res.json(category)
+  })
 });
 
 router.post('/', (req, res) => {
