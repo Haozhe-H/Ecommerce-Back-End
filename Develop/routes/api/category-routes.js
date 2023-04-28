@@ -85,6 +85,7 @@ router.delete("/:id", (req, res) => {
   })
     .then((removedCategory) => {
       res.status(200).json(removedCategory);
+      console.log('This category has been deleted.');
     })
     .then((err) => {
       console.log(err);
